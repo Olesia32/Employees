@@ -13,27 +13,6 @@ namespace Employees
         private double wage_per_hour;
         private double minimum_amount_hour;
 
-        public string Surname
-        {
-            get { return surname; }
-            private set { surname = value; }
-        }
-        public double Experience
-        {
-            get { return experience; }
-            private set { experience = value; }
-        }
-        public double Wage_per_hour
-        {
-            get { return wage_per_hour; }
-            private set { wage_per_hour = value; }
-        }
-        public double Minimum_amount_hour
-        {
-            get { return minimum_amount_hour; }
-            private set { minimum_amount_hour = value; }
-        }
-
         public Employee()
         {
             surname = string.Empty;

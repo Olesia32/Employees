@@ -27,5 +27,26 @@ namespace Employees
             wage_per_hour = _wage_per_hour;
             minimum_amount_hour = _minimum_amount_hour;
         }
+        public double Salary
+        {
+            get { return minimum_amount_hour * wage_per_hour; }
+
+        }
+        public override string ToString()
+        {
+            return $"Прізвище: {surname}, стаж: {experience}, заробітня плата: {Salary} UAN;";
+        }
+        public static Employee operator +(Employee _employee, double new_wage_per_hour)
+        {
+            return new Employee(_employee.surname, _employee.experience, _employee.wage_per_hour + new_wage_per_hour, _employee.minimum_amount_hour);
+        }
+        public static bool operator <(Employee first, Employee second)
+        {
+            return first.Salary < second.Salary;
+        }
+        public static bool operator >(Employee first, Employee second)
+        {
+            return first.Salary > second.Salary;
+        }
     }
 }

@@ -48,5 +48,19 @@ namespace Employees
         {
             return first.Salary > second.Salary;
         }
+        public void ReadFromConsole(Employee employee)
+        {
+            Console.Write("Введіть прізвище працівника: ");
+            employee.surname = Console.ReadLine();
+
+            Console.Write("Введіть стаж: ");
+            employee.experience = Double.Parse(Console.ReadLine());
+
+            Console.Write("Введіть оплату за годину: ");
+            employee.wage_per_hour = Double.Parse(Console.ReadLine());
+
+            Console.Write("Введіть мінімальну кількість годин, які він має відпрацювати за тиждень: ");
+            employee.minimum_amount_hour = Double.Parse(Console.ReadLine());
+        }
     }
 }

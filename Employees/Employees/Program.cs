@@ -18,6 +18,7 @@ namespace Employees
             employees[2] = a3;
             employees[3] = a4;
             employees[4] = a5;
+            Console.WriteLine("Працівники:");
             foreach (Employee i in employees)
             {
                 Console.WriteLine(i);
@@ -36,7 +37,14 @@ namespace Employees
             Console.WriteLine("\nДемонстрація роботи арифметичного оператора + (збільшує оплату за годину)");
             Console.WriteLine("До: {0}", a1);
             a1 += 5;
-            Console.WriteLine("Після застосування оператора +: {0}", a1);
+            Console.WriteLine("Після застосування оператора +: {0}\n", a1);
+
+            // Введення в режимі діалогу інформації про нового працівника
+            Console.WriteLine("Створення нового працівника");
+            Employee a6 = new Employee();
+            a6.ReadFromConsole(a6);
+            Console.WriteLine("\nНовий працівник: " + a6);
+
             Console.ReadLine();
         }
     }

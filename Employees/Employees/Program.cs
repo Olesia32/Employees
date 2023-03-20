@@ -16,7 +16,6 @@ namespace Employees
             Leader l1 = new Leader("Рожко", 13.0, 280, 40, 5);
             Leader l2 = new Leader("Панчук", 15, 300, 40, 5);
 
-
             List<Employee> list_of_empoyees = new List<Employee>();
             list_of_empoyees.Add(a1);
             list_of_empoyees.Add(a2);
@@ -63,16 +62,26 @@ namespace Employees
             Console.WriteLine("Новий працівник: " + a6);
 
             // Створення двох нових колекцій які містять окремо програмістів та керівників
-            List<Programmer> list_of_programmer = new List<Programmer>();
+            List<Programmer> list_of_programmers = new List<Programmer>();
+            List<Leader> list_of_leaders = new List<Leader>();
             foreach (Employee i in list_of_empoyees)
             {
                 if (i is Programmer)
                 {
-                    list_of_programmer.Add(i as Programmer);
+                    list_of_programmers.Add(i as Programmer);
+                }
+                else if (i is Leader)
+                {
+                    list_of_leaders.Add(i as Leader);
                 }
             }
             Console.WriteLine("\n-----Працівники програмісти-----");
-            foreach(Programmer i in list_of_programmer)
+            foreach(Programmer i in list_of_programmers)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("\n-----Працівники керівники-----");
+            foreach (Leader i in list_of_leaders)
             {
                 Console.WriteLine(i);
             }

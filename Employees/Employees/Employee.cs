@@ -27,13 +27,15 @@ namespace Employees
             wage_per_hour = _wage_per_hour;
             minimum_amount_hour = _minimum_amount_hour;
         }
-        public double Minimum_amount_hour
-        {
-            get { return minimum_amount_hour; }
-        }
         public double Wage_per_hour
         {
             get { return wage_per_hour; }
+            set { wage_per_hour = value; }
+        }
+        public double Minimum_amount_hour
+        {
+            get { return minimum_amount_hour; }
+            set { minimum_amount_hour = value; }
         }
         public virtual double Salary()
         {

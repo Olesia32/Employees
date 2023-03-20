@@ -13,12 +13,18 @@ namespace Employees
             Employee a3 = new Employee("Боженко", 28.3, 183.5, 38);
             Employee a4 = new Employee("Абраменко", 42.1, 220.4, 27);
             Programmer a5 = new Programmer("Глоба", 11.0, 195.9, 41, 50);
+            Leader l1 = new Leader("Рожко", 13.0, 280, 40, 5);
+            Leader l2 = new Leader("Панчук", 15, 300, 40, 5);
+
+
             List<Employee> list_of_empoyees = new List<Employee>();
             list_of_empoyees.Add(a1);
             list_of_empoyees.Add(a2);
             list_of_empoyees.Add(a3);
             list_of_empoyees.Add(a4);
             list_of_empoyees.Add(a5);
+            list_of_empoyees.Add(l1);
+            list_of_empoyees.Add(l2);
             Console.WriteLine("------------Працівники:------------");
             foreach (Employee i in list_of_empoyees)
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
-    class Employee
+    class Employee : IComparable
     {
         private string surname;
         private double experience;
@@ -27,14 +27,21 @@ namespace Employees
             wage_per_hour = _wage_per_hour;
             minimum_amount_hour = _minimum_amount_hour;
         }
-        public double Salary
+        public double Minimum_amount_hour
         {
-            get { return minimum_amount_hour * wage_per_hour; }
-
+            get { return minimum_amount_hour; }
+        }
+        public double Wage_per_hour
+        {
+            get { return wage_per_hour; }
+        }
+        public virtual double Salary()
+        {
+            return minimum_amount_hour * wage_per_hour;
         }
         public override string ToString()
         {
-            return $"Прізвище: {surname}, стаж: {experience}, заробітня плата: {Salary} UAN;";
+            return $"Прізвище: {surname}, стаж: {experience}, заробітня плата: {Salary()} UAN;";
         }
         public static Employee operator +(Employee _employee, double new_wage_per_hour)
         {
@@ -42,25 +49,36 @@ namespace Employees
         }
         public static bool operator <(Employee first, Employee second)
         {
-            return first.Salary < second.Salary;
+            return first.Salary() < second.Salary();
         }
         public static bool operator >(Employee first, Employee second)
         {
-            return first.Salary > second.Salary;
+            return first.Salary() > second.Salary();
         }
-        public void ReadFromConsole(Employee employee)
+        public virtual void ReadFromConsole()
         {
+            Console.InputEncoding = Encoding.UTF8;
             Console.Write("Введіть прізвище працівника: ");
-            employee.surname = Console.ReadLine();
+            surname = Console.ReadLine();
 
             Console.Write("Введіть стаж: ");
-            employee.experience = Double.Parse(Console.ReadLine());
+            experience = Double.Parse(Console.ReadLine());
 
             Console.Write("Введіть оплату за годину: ");
-            employee.wage_per_hour = Double.Parse(Console.ReadLine());
+            wage_per_hour = Double.Parse(Console.ReadLine());
 
             Console.Write("Введіть мінімальну кількість годин, які він має відпрацювати за тиждень: ");
-            employee.minimum_amount_hour = Double.Parse(Console.ReadLine());
+            minimum_amount_hour = Double.Parse(Console.ReadLine());
+        }
+
+        public int CompareTo(object obj)
+        {
+            if(!(obj is Employee))
+            {
+                throw new ArgumentException("Compared Object is not of employee");
+            }
+            Employee employee = obj as Employee;
+            return Salary().CompareTo(employee.Salary());
         }
     }
 }

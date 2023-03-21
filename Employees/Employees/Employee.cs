@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
-    class Employee : IComparable
+    class Employee : IComparable, ICloneable
     {
         private string surname;
         private double experience;
@@ -82,5 +82,11 @@ namespace Employees
             Employee employee = obj as Employee;
             return Salary().CompareTo(employee.Salary());
         }
+
+        public object Clone()
+        {
+            return new Employee(surname, experience, wage_per_hour, minimum_amount_hour);
+        }
+
     }
 }

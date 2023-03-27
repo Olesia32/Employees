@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Employees
 {
@@ -8,30 +9,40 @@ namespace Employees
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Employee a1 = new Employee("Валах", 32.4, 175.0, 25);
-            Programmer a2 = new Programmer("Коваль", 20.0, 250, 45, 30);
-            Employee a3 = new Employee("Боженко", 28.3, 183.5, 38);
-            Employee a4 = new Employee("Абраменко", 42.1, 220.4, 27);
-            Programmer a5 = new Programmer("Глоба", 11.0, 195.9, 41, 50);
-            Leader l1 = new Leader("Рожко", 13.0, 280, 40, 5);
-            Leader l2 = new Leader("Панчук", 15, 300, 40, 5);
 
+            // Читання з файлу інформації про працівників, створення колекції
+            var path  = "../../../employees.txt";
+            Console.WriteLine(path);
+            StreamReader f = new StreamReader(path);
             List<Employee> list_of_empoyees = new List<Employee>();
-            list_of_empoyees.Add(a1);
-            list_of_empoyees.Add(a2);
-            list_of_empoyees.Add(a3);
-            list_of_empoyees.Add(a4);
-            list_of_empoyees.Add(a5);
-            list_of_empoyees.Add(l1);
-            list_of_empoyees.Add(l2);
+            while(!f.EndOfStream)
+            {
+                string[] array = f.ReadLine().Split();
+                if(array[0] == "Programmer")
+                {
+                    list_of_empoyees.Add(new Programmer(array[1], double.Parse(array[2]), double.Parse(array[3]),
+                        double.Parse(array[4]), double.Parse(array[5])));
+                }
+                else if(array[0] == "Leader")
+                {
+                    list_of_empoyees.Add(new Leader(array[1], double.Parse(array[2]), double.Parse(array[3]),
+                        double.Parse(array[4]), int.Parse(array[5])));
+                }
+                else
+                {
+                    list_of_empoyees.Add(new Employee(array[1], double.Parse(array[2]), double.Parse(array[3]),
+                        double.Parse(array[4])));
+                }
+            }
+            f.Close();
             Console.WriteLine("------------Працівники:------------");
             foreach (Employee i in list_of_empoyees)
             {
                 Console.WriteLine(i);
             }
-            Employee highest_paid_employee = new Employee();
 
             //Пошук найвисокооплачуванішого працівника
+            Employee highest_paid_employee = new Employee();
             foreach (Employee i in list_of_empoyees)
             {
                 if (i > highest_paid_employee)
@@ -51,14 +62,15 @@ namespace Employees
 
             // Демонстрація роботи арифметичного оператора
             Console.WriteLine("\n---Демонстрація роботи арифметичного оператора + (збільшує оплату за годину)---");
-            Console.WriteLine("До: {0}", a1);
-            a1 += 5;
-            Console.WriteLine("Після застосування оператора +: {0}", a1);
+            Console.WriteLine("До: {0}", list_of_empoyees[0]);
+            list_of_empoyees[0] += 5;
+            Console.WriteLine("Після застосування оператора +: {0}", list_of_empoyees[0]);
 
             // Введення в режимі діалогу інформації про нового працівника
             Console.WriteLine("\n---------Створення нового працівника-------");
             Employee a6 = new Employee();
             a6.ReadFromConsole();
+            list_of_empoyees.Add(a6);
             Console.WriteLine("Новий працівник: " + a6);
 
             // Створення двох нових колекцій які містять окремо програмістів та керівників

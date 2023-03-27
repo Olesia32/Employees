@@ -31,7 +31,7 @@ namespace Employees
             {
                 salary *= 1.01;
             }
-            return Math.Round(salary, 1);
+            return Math.Round(salary, 2);
         }
 
         public override string ToString()

@@ -28,7 +28,7 @@ namespace Employees
             {
                 salary -= salary * 0.25;
             }
-            return salary;
+            return Math.Round(salary, 2);
         }
         public override void ReadFromConsole()
         {

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Employees
 {
-    class Employee : IComparable, ICloneable
+    class Employee : IComparable, ICloneable, IFormattable
     {
         private string surname;
         private double experience;
@@ -41,9 +42,46 @@ namespace Employees
         {
             return minimum_amount_hour * wage_per_hour;
         }
+        public virtual double Salary_in_uah()
+        {
+            return Math.Round(Salary(), 2);
+        }
+        public virtual double Salary_in_usd()
+        {
+            // курс НБУ на 27.03.2023
+            return Math.Round(Salary() / 36.5686, 2);
+        }
+        public virtual double Salary_in_eur()
+        {
+            // курс НБУ на 27.03.2023
+            return Math.Round(Salary() / 39.3076, 2);
+        }
         public override string ToString()
         {
-            return $"Прізвище: {surname}, стаж: {experience}, заробітня плата: {Salary()} UAN;";
+            return this.ToString("UAH", CultureInfo.CurrentCulture);
+        }
+        public string ToString(string format)
+        {
+            return this.ToString(format, CultureInfo.CurrentCulture);
+        }
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (format == null)
+                return ToString();
+            if (formatProvider == null) 
+                formatProvider = CultureInfo.CurrentCulture;
+            string formatUpper = format.ToUpper();
+            switch (formatUpper)
+            {
+                case "UAH":
+                    return $"Прізвище: {surname}, стаж: {experience}, заробітня плата: {Salary_in_uah()} UAH;";
+                case "USD":
+                    return $"Прізвище: {surname}, стаж: {experience}, заробітня плата: {Salary_in_usd()} USD;";
+                case "EUR":
+                    return $"Прізвище: {surname}, стаж: {experience}, заробітня плата: {Salary_in_eur()} EUR;";
+                default:
+                    return ToString();
+            }
         }
         public static Employee operator +(Employee _employee, double new_wage_per_hour)
         {

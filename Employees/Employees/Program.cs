@@ -12,7 +12,6 @@ namespace Employees
 
             // Читання з файлу інформації про працівників, створення колекції
             var path  = "../../../employees.txt";
-            Console.WriteLine(path);
             StreamReader f = new StreamReader(path);
             List<Employee> list_of_empoyees = new List<Employee>();
             while(!f.EndOfStream)

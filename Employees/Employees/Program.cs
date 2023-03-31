@@ -37,7 +37,7 @@ namespace Employees
             Console.WriteLine("------------Працівники:------------");
             foreach (Employee i in list_of_empoyees)
             {
-                Console.WriteLine(i);
+                Console.WriteLine("{0,10:USD}", i);
             }
 
             //Пошук найвисокооплачуванішого працівника

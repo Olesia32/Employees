@@ -27,10 +27,17 @@ namespace Employees
             wage_per_hour = _wage_per_hour;
             minimum_amount_hour = _minimum_amount_hour;
         }
+        public string Surname
+        {
+            get { return surname; }
+        }
+        public double Experience
+        {
+            get { return experience; }
+        }
         public double Wage_per_hour
         {
             get { return wage_per_hour; }
-            set { wage_per_hour = value; }
         }
         public double Minimum_amount_hour
         {
@@ -39,7 +46,8 @@ namespace Employees
         }
         public virtual double Salary()
         {
-            return minimum_amount_hour * wage_per_hour;
+            double salary = minimum_amount_hour * wage_per_hour;
+            return salary;
         }
         public override string ToString()
         {

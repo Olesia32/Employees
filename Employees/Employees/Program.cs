@@ -65,12 +65,12 @@ namespace Employees
             list_of_empoyees[0] += 5;
             Console.WriteLine("Після застосування оператора +: {0}", list_of_empoyees[0]);
 
-            // Введення в режимі діалогу інформації про нового працівника
-            Console.WriteLine("\n---------Створення нового працівника-------");
-            Employee a6 = new Employee();
-            a6.ReadFromConsole();
-            list_of_empoyees.Add(a6);
-            Console.WriteLine("Новий працівник: " + a6);
+            //// Введення в режимі діалогу інформації про нового працівника
+            //Console.WriteLine("\n---------Створення нового працівника-------");
+            //Employee a6 = new Employee();
+            //a6.ReadFromConsole();
+            //list_of_empoyees.Add(a6);
+            //Console.WriteLine("Новий працівник: " + a6);
 
             // Створення двох нових колекцій які містять окремо програмістів та керівників
             List<Programmer> list_of_programmers = new List<Programmer>();
@@ -79,7 +79,10 @@ namespace Employees
             {
                 if (i is Programmer)
                 {
-                    list_of_programmers.Add(i as Programmer);
+                    Programmer pr = i as Programmer;
+                    list_of_programmers.Add(pr as Programmer);
+                    //pr.ExcessiveHours += pr.OnExcessiveHours(pr.);
+                    
                 }
                 else if (i is Leader)
                 {
@@ -96,7 +99,17 @@ namespace Employees
             {
                 Console.WriteLine(i);
             }
+            // Події
+            Console.WriteLine("\n--------------Події---------------");
+            Programmer p1 = new Programmer("Колач", 32, 700, 32, 32);
+            Leader l1 = new Leader("Крацило", 45, 500, 40, 5);
+            HumanResourcesDepartment h = new HumanResourcesDepartment();
+            p1.ExcessiveHours += h.TrackingWorkEmployees;
+            h.Inform(l1, p1);
+            Console.WriteLine(p1);
+            p1.HoursWorked = 64;
             Console.ReadLine();
         }
+        
     }
 }

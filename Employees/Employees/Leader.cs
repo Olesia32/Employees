@@ -45,5 +45,11 @@ namespace Employees
             Console.Write("Введіть кількість підлеглих: ");
             junior = Int32.Parse(Console.ReadLine());
         }
+        public void JuniorSuccess(object sender, ExcessiveHoursArgument arg)
+        {
+            Programmer programmer = sender as Programmer;
+            if (arg is ExcessiveHoursArgument) (arg as ExcessiveHoursArgument).Message =
+                    $"Вітаю з чудовим результатом колего {programmer.Surname}.";
+        }
     }
 }

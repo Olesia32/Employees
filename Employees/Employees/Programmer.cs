@@ -16,7 +16,6 @@ namespace Employees
         public Programmer(string _surname, double _experience, double _wage_per_hour, double _minimum_amount_hour, 
             double _hours_worked) : base(_surname, _experience, _wage_per_hour, _minimum_amount_hour)
         {
-            
             hours_worked = _hours_worked;
         }
         public Programmer(Employee _employee, double _hours_worked)
@@ -58,18 +57,18 @@ namespace Employees
         }
         public void OnExcessiveHours(double param)
         {
-            if(ExcessiveHours != null)
+            if (ExcessiveHours != null)
             {
                 ExcessiveHoursArgument arg = new ExcessiveHoursArgument(param);
                 ExcessiveHours(this, arg);
-                if(arg.Message != string.Empty)
+                if (arg.Message != string.Empty)
                 {
                     Console.WriteLine($"Працівник {this.Surname} отримав повідомлення від свого керівника: '{arg.Message}'");
                 }
                 if (arg.AdditionalParameter != 0.0)
                 {
                    premium = arg.AdditionalParameter;
-                   Console.WriteLine($"Тепер запрлата працівника становить {Salary()} UAN");
+                   Console.WriteLine($"Тепер запрлата працівника становить {Salary()} UAH");
                 }
             }
         }

@@ -11,18 +11,21 @@ namespace Employees
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             // Читання з файлу інформації про працівників, створення колекції
-            var path  = "../../../employees.txt";
+            var path = "../../../employees.txt";
             StreamReader f = new StreamReader(path);
             List<Employee> list_of_empoyees = new List<Employee>();
-            while(!f.EndOfStream)
+            while (!f.EndOfStream)
             {
                 string[] array = f.ReadLine().Split();
-                if(array[0] == "Programmer")
+                if (array[0] == "Programmer")
                 {
+                    Programmer programmer = new Programmer(array[1], double.Parse(array[2]), double.Parse(array[3]),
+                        double.Parse(array[4]), double.Parse(array[5]));
+
                     list_of_empoyees.Add(new Programmer(array[1], double.Parse(array[2]), double.Parse(array[3]),
                         double.Parse(array[4]), double.Parse(array[5])));
                 }
-                else if(array[0] == "Leader")
+                else if (array[0] == "Leader")
                 {
                     list_of_empoyees.Add(new Leader(array[1], double.Parse(array[2]), double.Parse(array[3]),
                         double.Parse(array[4]), int.Parse(array[5])));
@@ -50,7 +53,7 @@ namespace Employees
                 }
             }
             Console.WriteLine("\n-------Найвисокооплачуваніший працівник------\n{0}", highest_paid_employee);
-            if(highest_paid_employee is Programmer)
+            if (highest_paid_employee is Programmer)
             {
                 Console.WriteLine("Цей працівник є програмістом");
             }
@@ -81,8 +84,6 @@ namespace Employees
                 {
                     Programmer pr = i as Programmer;
                     list_of_programmers.Add(pr as Programmer);
-                    //pr.ExcessiveHours += pr.OnExcessiveHours(pr.);
-                    
                 }
                 else if (i is Leader)
                 {
@@ -90,7 +91,7 @@ namespace Employees
                 }
             }
             Console.WriteLine("\n-----Працівники програмісти-----");
-            foreach(Programmer i in list_of_programmers)
+            foreach (Programmer i in list_of_programmers)
             {
                 Console.WriteLine(i);
             }
@@ -100,16 +101,28 @@ namespace Employees
                 Console.WriteLine(i);
             }
             // Події
+
+            // Коли Працівник-програміст відпрацював понаднормові години, відділ кадрів повідомляє про це.
+            // Якщо понаднормово відпрацьовано більше 25 годин,
+            // відділ кадрів виписує Працівнику премію у розмірі 20% від його зарплати (премія додається до зарплати).
+            // Також відділ кадрів може підписати Керівника-ментора на отримання повідомлень про успіхи Працівника.
+
+            // Коли Працівник-керівник має більше підлеглих за норму, то відділ кадрів повідомляє про це.
+            // Якщо кількість підлеглих більша від норми на 5,
+            // то відділ кадрів виписує Працівнику-керівнику премію у розмірі 20% від його зарплати (премія додається до зарплати).
+
             Console.WriteLine("\n--------------Події---------------");
-            Programmer p1 = new Programmer("Колач", 32, 700, 32, 32);
+            Programmer p1 = new Programmer("Колач", 32, 400, 32, 32);
             Leader l1 = new Leader("Крацило", 45, 500, 40, 5);
             HumanResourcesDepartment h = new HumanResourcesDepartment();
             p1.ExcessiveHours += h.TrackingWorkEmployees;
+            l1.ExcessiveNumberJuniors += h.TrackingWorkLeaders;
             h.Inform(l1, p1);
             Console.WriteLine(p1);
+            Console.WriteLine(l1);
             p1.HoursWorked = 64;
+            l1.Junior = 15;
             Console.ReadLine();
         }
-        
     }
 }

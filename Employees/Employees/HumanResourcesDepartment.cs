@@ -12,8 +12,8 @@ namespace Employees
         {
             Programmer programer = sender as Programmer;
             Console.WriteLine("\n-----Відділ кадрів-----");
-            Console.WriteLine($"Працівник {programer.Surname} додатково відпрацював {arg.Parameter} годин");
-            if (arg.Parameter > 25)
+            Console.WriteLine($"Працівник {programer.Surname} понаднормово відпрацював {arg.Parameter} годин");
+            if(arg.Parameter > 25)
             {
                 if (arg is ExcessiveHoursArgument) (arg as ExcessiveHoursArgument).AdditionalParameter =
                     Math.Round(programer.Salary() * 0.2, 2);

@@ -16,11 +16,26 @@ namespace Employees
             if(arg.Parameter > 25)
             {
                 if (arg is ExcessiveHoursArgument) (arg as ExcessiveHoursArgument).AdditionalParameter =
-                    programer.Salary() * 0.2;
+                    Math.Round(programer.Salary() * 0.2, 2);
                 Console.WriteLine($"За вражаючий понаднормовий відробіток працівник {programer.Surname} отримує " +
-                    $"премію в розмірі 20% від його зарплати. Розмір премії складає {arg.AdditionalParameter} UAN");
+                    $"премію в розмірі 20% від його зарплати. Розмір премії складає {arg.AdditionalParameter} UAH");
             }
             Console.WriteLine("-----------------------\n");
+        }
+        public void TrackingWorkLeaders(object sender, ExcessiveNumberJuniorsArgument arg)
+        {
+            Leader leader = sender as Leader;
+            Console.WriteLine("\n-----Відділ кадрів-----");
+            Console.WriteLine($"Керівник {leader.Surname} тепер має на {arg.Parameter} підлеглих більше від норми");
+            if (arg.Parameter >= 5)
+            {
+                if (arg is ExcessiveNumberJuniorsArgument) (arg as ExcessiveNumberJuniorsArgument).AdditionalParameter =
+                    Math.Round(leader.Salary() * 0.2, 2);
+                Console.WriteLine($"За вражаючу кількість підлеглих керівник {leader.Surname} отримує " +
+                    $"премію в розмірі 20% від його зарплати. Розмір премії складає {arg.AdditionalParameter} UAH");
+            }
+            Console.WriteLine("-----------------------\n");
+
         }
         public void Inform(Leader leader, Programmer programmer)
         {

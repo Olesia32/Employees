@@ -60,18 +60,18 @@ namespace Employees
         }
         public void OnExcessiveHours(double param)
         {
-            if(ExcessiveHours != null)
+            if (ExcessiveHours != null)
             {
                 ExcessiveHoursArgument arg = new ExcessiveHoursArgument(param);
                 ExcessiveHours(this, arg);
-                if(arg.Message != string.Empty)
+                if (arg.Message != string.Empty)
                 {
                     Console.WriteLine($"Працівник {this.Surname} отримав повідомлення від свого керівника: '{arg.Message}'");
                 }
                 if (arg.AdditionalParameter != 0.0)
                 {
                    premium = arg.AdditionalParameter;
-                   Console.WriteLine($"Тепер запрлата працівника становить {Salary()} UAN");
+                   Console.WriteLine($"Тепер запрлата працівника становить {Salary()} UAH");
                 }
             }
         }

@@ -121,7 +121,7 @@ namespace Employees
 
         public int CompareTo(object obj)
         {
-            if(!(obj is Employee))
+            if (!(obj is Employee))
             {
                 throw new ArgumentException("Compared Object is not of employee");
             }
@@ -133,6 +133,5 @@ namespace Employees
         {
             return new Employee(surname, experience, wage_per_hour, minimum_amount_hour);
         }
-
     }
 }

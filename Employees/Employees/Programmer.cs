@@ -16,11 +16,13 @@ namespace Employees
         public Programmer(string _surname, double _experience, double _wage_per_hour, double _minimum_amount_hour, 
             double _hours_worked) : base(_surname, _experience, _wage_per_hour, _minimum_amount_hour)
         {
-            
             hours_worked = _hours_worked;
         }
-        public Programmer(Employee _employee, double _hours_worked)
-        { }
+        public Programmer(Employee _employee, double _hours_worked) : base(_employee.Surname, _employee.Experience,
+            _employee.Wage_per_hour, _employee.Minimum_amount_hour)
+        {
+            hours_worked = _hours_worked;
+        }
         public override string ToString()
         {
             return $"Працівник-програміст: {base.ToString()};";

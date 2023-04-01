@@ -23,6 +23,11 @@ namespace Employees
             junior = _junior;
             Minimum_amount_hour = 40;
         }
+        public Leader(Employee _employee, int _junior) : base(_employee.Surname, _employee.Experience,
+            _employee.Wage_per_hour, _employee.Minimum_amount_hour)
+        {
+            junior= _junior;
+        }
 
         public override double Salary()
         {
